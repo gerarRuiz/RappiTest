@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">RappiTest</string>
+    <string name="title_tendencia">Tendencia</string>
+    <string name="title_upcoming">Próximos estrenos</string>
+    <string name="title_app">eMovie</string>
+    <string name="recomendados">Recomendados Para Ti</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ver_trailer">Ver trailer</string>
+</resources>

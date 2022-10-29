@@ -1,0 +1,21 @@
+package com.example.rappitest.domain.model
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.example.rappitest.util.Constants.MOVIE_TOP_RATED_DB_TABLE
+import kotlinx.serialization.Serializable
+
+@Serializable
+@Entity(tableName = MOVIE_TOP_RATED_DB_TABLE)
+data class MovieTopRated(
+    @PrimaryKey(autoGenerate = false)
+    val id: Long,
+    val title: String,
+    val original_language: String,
+    val overview: String,
+    val backdrop_path: String,
+    val poster_path: String,
+    val release_date: String,
+    val vote_average: Double,
+    val genre_ids: List<Int>
+)

@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.example.rappitest",
+  "applicationId": "com.ruiz.rappitest",
   "variantName": "release",
   "elements": [
     {

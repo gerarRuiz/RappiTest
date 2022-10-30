@@ -5,9 +5,9 @@ import com.ruiz.rappitest.data.local.MoviesDatabase
 import com.ruiz.rappitest.data.remote.MoviesApi
 import com.ruiz.rappitest.data.repository.RemoteDataSourceImpl
 import com.ruiz.rappitest.domain.repository.RemoteDataSource
-import com.ruiz.rappitest.util.Constants.BASE_URL
-import com.ruiz.rappitest.util.Constants.CONNECTION_TIMEOUT
-import com.ruiz.rappitest.util.Constants.READ_TIMEOUT
+import com.ruiz.rappitest.util.constants.Constants.BASE_URL
+import com.ruiz.rappitest.util.constants.Constants.CONNECTION_TIMEOUT
+import com.ruiz.rappitest.util.constants.Constants.READ_TIMEOUT
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides

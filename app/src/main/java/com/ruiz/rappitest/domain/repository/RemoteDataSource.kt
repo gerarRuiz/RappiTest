@@ -1,8 +1,10 @@
 package com.ruiz.rappitest.domain.repository
 
+import androidx.lifecycle.LiveData
 import androidx.paging.PagingData
 import com.ruiz.rappitest.domain.model.*
 import kotlinx.coroutines.flow.Flow
+import retrofit2.Response
 
 interface RemoteDataSource {
 
@@ -12,6 +14,6 @@ interface RemoteDataSource {
 
     suspend fun getAllGenresMovies(ids: List<Int>): List<MoviesGenres>
 
-    suspend fun getMoviewVideos(movieId: Int): ApiResponseVideos
+    suspend fun getMoviewVideos(movieId: Int): Response<ApiResponseVideos>
 
 }

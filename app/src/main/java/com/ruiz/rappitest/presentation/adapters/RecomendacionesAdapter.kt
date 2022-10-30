@@ -10,7 +10,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.ruiz.rappitest.R
 import com.ruiz.rappitest.databinding.MovieItemGridBinding
 import com.ruiz.rappitest.domain.model.MovieTopRated
-import com.ruiz.rappitest.util.Constants
+import com.ruiz.rappitest.util.constants.Constants
 
 class RecomendacionesAdapter(
     var callback: (item: MovieTopRated) -> Unit

@@ -1,9 +1,7 @@
 package com.ruiz.rappitest.data.repository
 
-import androidx.paging.ExperimentalPagingApi
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
+import androidx.lifecycle.LiveData
+import androidx.paging.*
 import com.ruiz.rappitest.data.local.MoviesDatabase
 import com.ruiz.rappitest.data.paging_source.MoviesTopRatedMediator
 import com.ruiz.rappitest.data.paging_source.MoviesUpComingMediator
@@ -14,6 +12,7 @@ import com.ruiz.rappitest.domain.model.MovieUpcoming
 import com.ruiz.rappitest.domain.model.MoviesGenres
 import com.ruiz.rappitest.domain.repository.RemoteDataSource
 import kotlinx.coroutines.flow.Flow
+import retrofit2.Response
 import java.net.UnknownHostException
 
 @ExperimentalPagingApi
@@ -40,7 +39,6 @@ class RemoteDataSourceImpl(
 
     override fun getAllUpComingMovies(): Flow<PagingData<MovieUpcoming>> {
         val pagingSource = { upcomingDao.getAllMoviesUpcoming() }
-
         return Pager(
             config = PagingConfig(pageSize = 50),
             remoteMediator = MoviesUpComingMediator(
@@ -66,12 +64,8 @@ class RemoteDataSourceImpl(
         return genres.toList()
     }
 
-    override suspend fun getMoviewVideos(movieId: Int): ApiResponseVideos {
-        return try {
-            moviesApi.getVideos(movie_id = movieId)
-        }catch (e: Exception){
-            ApiResponseVideos()
-        }
+    override suspend fun getMoviewVideos(movieId: Int): Response<ApiResponseVideos> {
+        return moviesApi.getVideos(movie_id = movieId)
     }
 
 }

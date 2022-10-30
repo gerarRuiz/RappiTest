@@ -19,7 +19,7 @@ import com.ruiz.rappitest.presentation.adapters.LoaderAdapter
 import com.ruiz.rappitest.presentation.adapters.RecomendacionesAdapter
 import com.ruiz.rappitest.presentation.adapters.TopRatedMoviesAdapter
 import com.ruiz.rappitest.presentation.adapters.UpComingMoviesAdapter
-import com.ruiz.rappitest.util.Constants
+import com.ruiz.rappitest.util.constants.Constants
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

@@ -2,7 +2,7 @@ package com.ruiz.rappitest.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.ruiz.rappitest.util.Constants.MOVIE_TOP_RATED_DB_TABLE
+import com.ruiz.rappitest.util.constants.Constants.MOVIE_TOP_RATED_DB_TABLE
 import kotlinx.serialization.Serializable
 
 @Serializable

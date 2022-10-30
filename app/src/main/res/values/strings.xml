@@ -7,4 +7,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ver_trailer">Ver trailer</string>
+    <string name="atencion">Atención</string>
+    <string name="movie_without_trailer">La pelicula no tiene trailer oficial</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="error">Error</string>
+    <string name="movie_no_has_videos">La pelicula no tiene videos a reproducir</string>
+    <string name="cerrar">Cerrar</string>
 </resources>

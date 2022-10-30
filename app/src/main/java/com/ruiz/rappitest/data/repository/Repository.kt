@@ -1,5 +1,6 @@
 package com.ruiz.rappitest.data.repository
 
+import androidx.lifecycle.LiveData
 import androidx.paging.PagingData
 import com.ruiz.rappitest.domain.model.ApiResponseVideos
 import com.ruiz.rappitest.domain.model.MovieTopRated
@@ -8,6 +9,7 @@ import com.ruiz.rappitest.domain.model.MoviesGenres
 import com.ruiz.rappitest.domain.repository.LocalDataSource
 import com.ruiz.rappitest.domain.repository.RemoteDataSource
 import kotlinx.coroutines.flow.Flow
+import retrofit2.Response
 import javax.inject.Inject
 
 class Repository @Inject constructor(
@@ -27,7 +29,7 @@ class Repository @Inject constructor(
         return remote.getAllGenresMovies(ids)
     }
 
-    suspend fun getMoviewVideos(idMovie: Int): ApiResponseVideos {
+    suspend fun getMoviewVideos(idMovie: Int): Response<ApiResponseVideos> {
         return remote.getMoviewVideos(movieId = idMovie)
     }
 

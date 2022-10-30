@@ -10,7 +10,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.ruiz.rappitest.R
 import com.ruiz.rappitest.databinding.MovieItemBinding
 import com.ruiz.rappitest.domain.model.MovieUpcoming
-import com.ruiz.rappitest.util.Constants
+import com.ruiz.rappitest.util.constants.Constants
 
 class UpComingMoviesAdapter(
     var callback: (item: MovieUpcoming?) -> Unit

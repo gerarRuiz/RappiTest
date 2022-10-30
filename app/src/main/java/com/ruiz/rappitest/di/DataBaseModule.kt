@@ -5,7 +5,7 @@ import androidx.room.Room
 import com.ruiz.rappitest.data.local.MoviesDatabase
 import com.ruiz.rappitest.data.repository.LocalDataSourceImpl
 import com.ruiz.rappitest.domain.repository.LocalDataSource
-import com.ruiz.rappitest.util.Constants.MOVIES_DATABASE
+import com.ruiz.rappitest.util.constants.Constants.MOVIES_DATABASE
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,25 +1,27 @@
 package com.ruiz.rappitest.presentation.fragments.video_player
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.ruiz.rappitest.databinding.FragmentVideoPlayerBinding
-import com.ruiz.rappitest.util.Constants.VIDEO_SITE
-import com.ruiz.rappitest.util.Constants.VIDEO_TYPE
+import androidx.paging.ExperimentalPagingApi
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
+import com.ruiz.rappitest.R
+import com.ruiz.rappitest.databinding.FragmentVideoPlayerBinding
+import com.ruiz.rappitest.presentation.common.BaseFragment
+import com.ruiz.rappitest.presentation.common.CustomLoader
+import com.ruiz.rappitest.util.constants.Constants.VIDEO_SITE
+import com.ruiz.rappitest.util.constants.Constants.VIDEO_TYPE
+import com.ruiz.rappitest.util.enums.DialogAnim
+import com.ruiz.rappitest.util.extensions.showBasicDialog
+import com.ruiz.rappitest.util.network.UIState
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
+@ExperimentalPagingApi
 @AndroidEntryPoint
-class VideoPlayerFragment : Fragment() {
+class VideoPlayerFragment :
+    BaseFragment<FragmentVideoPlayerBinding>(FragmentVideoPlayerBinding::inflate) {
 
     private lateinit var binding: FragmentVideoPlayerBinding
 
@@ -27,40 +29,71 @@ class VideoPlayerFragment : Fragment() {
 
     private val viewModel: VideoPlayerViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentVideoPlayerBinding.inflate(inflater, container, false)
-        return binding.root
+    private val customLoader: CustomLoader by lazy { CustomLoader(requireContext()) }
+
+    override fun FragmentVideoPlayerBinding.initialize() {
+        binding = this
+        viewLifecycleOwner.lifecycle.addObserver(binding.youtubePlayer)
+        observerState()
+        viewModel.getMovieVideos(safeArgs.movieId)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun observerState() {
 
-        viewLifecycleOwner.lifecycle.addObserver(binding.youtubePlayer)
+        viewModel.videosMovieState.observe(viewLifecycleOwner) { state ->
 
-        var videoKey = ""
+            when (state) {
 
-        lifecycleScope.launch {
-            viewModel.getMovieVideos(safeArgs.movieId)
-            viewModel.getVideosMovie.collectLatest { response ->
+                is UIState.Success -> {
 
-                response?.results?.forEach { item ->
+                    val list = state.data.results
 
-                    if (item.official && item.site == VIDEO_SITE && item.type == VIDEO_TYPE) {
-                        videoKey = item.key
-                        return@forEach
+                    if (list.isNotEmpty()) {
+
+                        list.find { item -> item.official && item.site == VIDEO_SITE && item.type == VIDEO_TYPE }
+                            ?.let {
+                                playVideo(it.key)
+                            } ?: run {
+                            basicDialog(
+                                title = getString(R.string.atencion),
+                                message = getString(R.string.movie_without_trailer),
+                                textButton = getString(R.string.aceptar),
+                                anim = DialogAnim.INFORMATIVE
+                            )
+                        }
+
+
+                    } else {
+                        basicDialog(
+                            title = getString(R.string.error),
+                            message = getString(R.string.movie_no_has_videos),
+                            textButton = getString(R.string.cerrar),
+                            anim = DialogAnim.ERROR
+                        )
                     }
+
 
                 }
 
-                playVideo(videoKey)
+                is UIState.Error -> {
+                    basicDialog(
+                        title = getString(R.string.error),
+                        message = state.error,
+                        textButton = getString(R.string.cerrar),
+                        anim = DialogAnim.ERROR
+                    )
+                }
 
+                is UIState.Loading -> {
+                    when (state.status) {
+                        true -> customLoader.show()
+                        false -> customLoader.getDialog().cancel()
+                    }
+                }
+
+                else -> Unit
             }
-
         }
-
 
     }
 
@@ -77,6 +110,17 @@ class VideoPlayerFragment : Fragment() {
             }
 
         })
+    }
+
+    private fun basicDialog(title: String, message: String, textButton: String, anim: DialogAnim) {
+        showBasicDialog(
+            title,
+            message,
+            textButton,
+            anim
+        ) {
+            findNavController().popBackStack()
+        }
     }
 
     override fun onDestroyView() {

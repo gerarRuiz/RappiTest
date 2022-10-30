@@ -16,7 +16,7 @@ import com.ruiz.rappitest.databinding.FragmentDetailsBinding
 import com.ruiz.rappitest.domain.model.MovieTopRated
 import com.ruiz.rappitest.domain.model.MovieUpcoming
 import com.ruiz.rappitest.presentation.adapters.GenresAdapter
-import com.ruiz.rappitest.util.Constants
+import com.ruiz.rappitest.util.constants.Constants
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

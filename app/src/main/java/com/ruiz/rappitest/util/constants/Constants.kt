@@ -1,4 +1,4 @@
-package com.ruiz.rappitest.util
+package com.ruiz.rappitest.util.constants
 
 object Constants {
 

@@ -8,11 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.ruiz.rappitest.R
 import com.ruiz.rappitest.databinding.FragmentSplashBinding
-import com.ruiz.rappitest.util.Constants
+import com.ruiz.rappitest.util.constants.Constants
 
 class SplashFragment : Fragment() {
 

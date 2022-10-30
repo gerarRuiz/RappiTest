@@ -4,7 +4,8 @@ import com.ruiz.rappitest.domain.model.ApiResponseGenres
 import com.ruiz.rappitest.domain.model.ApiResponseTopRated
 import com.ruiz.rappitest.domain.model.ApiResponseUpComing
 import com.ruiz.rappitest.domain.model.ApiResponseVideos
-import com.ruiz.rappitest.util.Constants
+import com.ruiz.rappitest.util.constants.Constants
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -35,6 +36,6 @@ interface MoviesApi {
     suspend fun getVideos(
         @Path("movie_id") movie_id: Int = 0,
         @Query("api_key") apiKey: String = Constants.API_KEY,
-    ): ApiResponseVideos
+    ): Response<ApiResponseVideos>
 
 }

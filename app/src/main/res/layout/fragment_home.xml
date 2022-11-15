@@ -7,146 +7,188 @@
     android:background="@color/black"
     tools:context=".MainActivity">
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/linear_root"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/root_scroll"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:scrollbars="none">
 
-            <TextView
-                android:id="@+id/tv_title"
+            <LinearLayout
+                android:id="@+id/linear_root"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/title_app"
-                android:textAlignment="center"
-                android:textSize="@dimen/text_title"
-                android:textColor="@color/white"
-                android:layout_marginTop="@dimen/text_title_margin_top" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_title_upcoming"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/title_upcoming"
-                android:textAlignment="textStart"
-                android:textSize="@dimen/text_sub_title_size"
-                android:textColor="@color/white"
-                android:layout_marginTop="@dimen/text_sub_title_margin_top"
-                android:layout_marginStart="@dimen/margin_start"
-                app:layout_constraintTop_toBottomOf="@id/tv_title"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_upcoming"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="@dimen/margin_start"
-                android:layout_marginTop="@dimen/margin_top_recycler"
-                tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/movie_item"
-                tools:itemCount="5" />
-
-            <TextView
-                android:id="@+id/tv_title_top_rated"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/title_tendencia"
-                android:textAlignment="textStart"
-                android:textSize="@dimen/text_sub_title_size"
-                android:textColor="@color/white"
-                android:layout_marginTop="@dimen/text_sub_title_margin_top"
-                android:layout_marginStart="@dimen/margin_start"
-                app:layout_constraintTop_toBottomOf="@id/tv_title"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_top_rated"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_start"
-                android:layout_marginTop="@dimen/margin_top_recycler"
-                android:orientation="horizontal"
-                tools:itemCount="5"
-                tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/movie_item" />
-
-            <TextView
-                android:id="@+id/tv_title_recomendados"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/recomendados"
-                android:textAlignment="textStart"
-                android:textSize="@dimen/text_sub_title_size"
-                android:textColor="@color/white"
-                android:layout_marginTop="@dimen/text_sub_title_margin_top"
-                android:layout_marginStart="@dimen/margin_start"
-                app:layout_constraintTop_toBottomOf="@id/tv_title"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
-
-            <RadioGroup
-                android:id="@+id/rg_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/rb_coreano"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="En Koreano"
-                    android:padding="@dimen/M16DP"
-                    android:button="@android:color/transparent"
-                    android:background="@drawable/radio_selector"
-                    android:textColor="@drawable/text_radio_color"
-                    android:elevation="10dp"
-                    android:layout_marginStart="@dimen/margin_start"
-                    android:layout_marginTop="@dimen/margin_top_recycler"/>
+                    android:layout_marginTop="@dimen/text_title_margin_top"
+                    android:text="@string/title_app"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_title" />
 
-                <RadioButton
-                    android:id="@+id/rb_lanzadas_2020"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tv_title_upcoming"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lanzadas en 2020"
-                    android:button="@android:color/transparent"
-                    android:background="@drawable/radio_selector"
-                    android:textColor="@drawable/text_radio_color"
-                    android:elevation="10dp"
-                    android:padding="@dimen/M16DP"
                     android:layout_marginStart="@dimen/margin_start"
-                    android:layout_marginTop="@dimen/margin_top_recycler" />
+                    android:layout_marginTop="@dimen/text_sub_title_margin_top"
+                    android:text="@string/title_upcoming"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_sub_title_size"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
-            </RadioGroup>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_upcoming"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginTop="@dimen/margin_top_recycler"
+                    android:orientation="horizontal"
+                    tools:itemCount="5"
+                    tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/movie_item" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_recomendaciones"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_start"
-                android:layout_marginTop="@dimen/margin_top_recycler"
-                android:orientation="vertical"
-                tools:itemCount="5"
-                tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-                tools:listitem="@layout/movie_item" />
+                <include
+                    android:id="@+id/loader_item_upcoming_movies"
+                    layout="@layout/loader_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginTop="@dimen/margin_top_recycler"
+                    android:visibility="gone" />
 
-        </LinearLayout>
+                <include
+                    android:id="@+id/no_data_item_upcoming_movies"
+                    layout="@layout/layout_no_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginTop="@dimen/margin_top_recycler"
+                    android:visibility="gone" />
 
-    </androidx.core.widget.NestedScrollView>
+                <TextView
+                    android:id="@+id/tv_title_top_rated"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginTop="@dimen/text_sub_title_margin_top"
+                    android:text="@string/title_tendencia"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_sub_title_size"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_top_rated"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginTop="@dimen/margin_top_recycler"
+                    android:orientation="horizontal"
+                    tools:itemCount="5"
+                    tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/movie_item" />
+
+                <include
+                    android:id="@+id/loader_item_toprated_movies"
+                    layout="@layout/loader_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginTop="@dimen/margin_top_recycler"
+                    android:visibility="gone" />
+
+                <include
+                    android:id="@+id/no_data_toprated_movies"
+                    layout="@layout/layout_no_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginTop="@dimen/margin_top_recycler"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_title_recomendados"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginTop="@dimen/text_sub_title_margin_top"
+                    android:text="@string/recomendados"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_sub_title_size"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+                <RadioGroup
+                    android:id="@+id/rg_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_coreano"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_start"
+                        android:layout_marginTop="@dimen/margin_top_recycler"
+                        android:background="@drawable/radio_selector"
+                        android:button="@android:color/transparent"
+                        android:elevation="10dp"
+                        android:padding="@dimen/M16DP"
+                        android:text="En Koreano"
+                        android:textColor="@drawable/text_radio_color" />
+
+                    <RadioButton
+                        android:id="@+id/rb_lanzadas_2020"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_start"
+                        android:layout_marginTop="@dimen/margin_top_recycler"
+                        android:background="@drawable/radio_selector"
+                        android:button="@android:color/transparent"
+                        android:elevation="10dp"
+                        android:padding="@dimen/M16DP"
+                        android:text="Lanzadas en 2020"
+                        android:textColor="@drawable/text_radio_color" />
+
+                </RadioGroup>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_recomendaciones"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginTop="@dimen/margin_top_recycler"
+                    android:orientation="vertical"
+                    app:spanCount="2"
+                    tools:itemCount="5"
+                    tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    tools:listitem="@layout/movie_item" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

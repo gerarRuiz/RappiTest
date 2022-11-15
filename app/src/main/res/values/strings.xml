@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RappiTest</string>
+    <string name="app_name">eMovie</string>
     <string name="title_tendencia">Tendencia</string>
     <string name="title_upcoming">Próximos estrenos</string>
     <string name="title_app">eMovie</string>
@@ -13,4 +13,5 @@
     <string name="error">Error</string>
     <string name="movie_no_has_videos">La pelicula no tiene videos a reproducir</string>
     <string name="cerrar">Cerrar</string>
+    <string name="no_info">No hay información</string>
 </resources>

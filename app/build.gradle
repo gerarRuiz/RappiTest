@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace 'com.ruiz.rappitest'
+    namespace 'com.ruiz.emovie'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.ruiz.rappitest"
+        applicationId "com.ruiz.emovie"
         minSdk 21
         targetSdk 32
         versionCode 1
@@ -97,5 +97,8 @@ dependencies {
 
     // Youtube Player
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
+
+    // Swipe Refresh Layout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
 }
